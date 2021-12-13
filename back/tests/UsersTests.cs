@@ -5,14 +5,14 @@ using TwitterApi.Controllers;
 namespace ApiTests
 {
     [TestClass]
-    public class UnitTest1
+    public class UsersTests
     {
         [TestMethod]
-        public void TestMethod1()
+        public void GetUsers_ShouldReturnArray()
         {
-            var meteo = new WeatherForecastController(null);
+            var usersController = new UsersController();
             
-            var actual = meteo.Get();
+            var actual = usersController.Get();
             
             Assert.IsInstanceOfType(actual, typeof(Array));
         }
