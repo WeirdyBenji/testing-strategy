@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using Microsoft.OpenApi.Any;
@@ -13,9 +13,17 @@ namespace TwitterApi.Controllers
     {
         // GET: api/Users
         [HttpGet]
-        public IEnumerable<AnyType> Get()
+        public IEnumerable<User> Get()
         {
-            return new AnyType[] {};
+            return new User[]
+            {
+                new User {
+                    Name = "John"
+                },
+                new User {
+                    Name = "Elijah"
+                }
+            };
         }
     }
 }
