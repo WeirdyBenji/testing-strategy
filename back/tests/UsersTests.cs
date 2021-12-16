@@ -9,12 +9,18 @@ namespace ApiTests
     [TestClass]
     public class UsersTests
     {
+        private UsersController _usersController;
+
+        [TestInitialize]
+        public void Initialize()
+        {
+            _usersController = new();
+        }
+     
         [TestMethod]
         public void GetUsers_ShouldReturnArray()
         {
-            var usersController = new UsersController();
-            
-            var actual = usersController.Get();
+            var actual = _usersController.Get();
             
             Assert.IsInstanceOfType(actual, typeof(Array));
         }
@@ -22,11 +28,10 @@ namespace ApiTests
         [TestMethod]
         public void GetUsers_ShouldReturnArrayOfUsers()
         {
-            var usersController = new UsersController();
-
-            var actual = usersController.Get();
+            var actual = _usersController.Get();
 
             Assert.IsInstanceOfType(actual, typeof(IEnumerable<User>));
         }
+
     }
 }
