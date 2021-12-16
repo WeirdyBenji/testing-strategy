@@ -26,6 +26,15 @@ namespace TwitterApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // TODO: Only dev mode
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.WithOrigins("localhost");
+                    });
+            });
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -42,9 +51,13 @@ namespace TwitterApi
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "TwitterApi v1"));
+
+                app.UseCors();
             }
 
             app.UseHttpsRedirection();
+
+            app.UseStaticFiles();
 
             app.UseRouting();
 
