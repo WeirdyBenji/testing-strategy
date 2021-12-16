@@ -25,5 +25,13 @@ namespace TwitterApi.Controllers
                 }
             };
         }
+
+        // GET api/Users/5
+        [HttpGet("{id:int}")]
+        public User Get(int id)
+        {
+            return new User {};
+        }
+
     }
 }

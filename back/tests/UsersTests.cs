@@ -33,5 +33,12 @@ namespace ApiTests
             Assert.IsInstanceOfType(actual, typeof(IEnumerable<User>));
         }
 
+        [TestMethod]
+        public void GetUsers_GivenUserId_ShouldReturnUser()
+        {
+            var actual = _usersController.Get(0);
+
+            Assert.IsInstanceOfType(actual, typeof(User));
+        }
     }
 }
