@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TwitterApi.Controllers;
 using TwitterApi.Models;
@@ -39,6 +40,14 @@ namespace ApiTests
             var actual = _usersController.Get(0);
 
             Assert.IsInstanceOfType(actual, typeof(User));
+        }
+
+        [TestMethod]
+        public void CreateUser_ShouldReturnUEErr()
+        {
+            var actual = _usersController.Post();
+
+            Assert.IsInstanceOfType(actual, typeof(UnprocessableEntityResult));
         }
     }
 }

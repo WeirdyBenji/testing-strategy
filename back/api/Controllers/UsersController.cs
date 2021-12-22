@@ -33,5 +33,11 @@ namespace TwitterApi.Controllers
             return new User {};
         }
 
+        // POST api/Users
+        [HttpPost]
+        public UnprocessableEntityResult Post()
+        {
+            return UnprocessableEntity();
+        }
     }
 }
