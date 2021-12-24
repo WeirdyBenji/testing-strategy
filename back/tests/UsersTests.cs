@@ -43,9 +43,9 @@ namespace ApiTests
         }
 
         [TestMethod]
-        public void CreateUser_ShouldReturnUEErr()
+        public void CreateUser_GivenNullBody_ShouldReturnUEErr()
         {
-            var actual = _usersController.Post();
+            var actual = _usersController.Post(null);
 
             Assert.IsInstanceOfType(actual, typeof(UnprocessableEntityResult));
         }
