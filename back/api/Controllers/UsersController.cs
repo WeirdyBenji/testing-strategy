@@ -35,9 +35,9 @@ namespace TwitterApi.Controllers
 
         // POST api/Users
         [HttpPost]
-        public UnprocessableEntityResult Post([FromBody] User user)
+        public User Post([FromBody] User user)
         {
-            return UnprocessableEntity();
+            return user;
         }
     }
 }

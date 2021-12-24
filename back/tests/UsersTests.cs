@@ -43,30 +43,15 @@ namespace ApiTests
         }
 
         [TestMethod]
-        public void CreateUser_GivenNullBody_ShouldReturnUEErr()
-        {
-            var actual = _usersController.Post(null);
-
-            Assert.IsInstanceOfType(actual, typeof(UnprocessableEntityResult));
-        }
-
-        [TestMethod]
-        public void CreateUser_GivenEmptyUser_ShouldReturnUEErr()
-        {
-            var actual = _usersController.Post(new User {});
-
-            Assert.IsInstanceOfType(actual, typeof(UnprocessableEntityResult));
-        }
-
-        [TestMethod]
-        public void CreateUser_GivenOnlyUserName_ShouldReturnUEEr()
+        public void CreateUser_GivenFullUser_ShouldReturnUser()
         {
             var actual = _usersController.Post(new User
             {
-                Name = "John"
+                Name = "John",
+                Password = "123"
             });
 
-            Assert.IsInstanceOfType(actual, typeof(UnprocessableEntityResult));
+            Assert.IsInstanceOfType(actual, typeof(User));
         }
     }
 }
