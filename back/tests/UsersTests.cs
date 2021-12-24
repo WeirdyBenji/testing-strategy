@@ -57,5 +57,16 @@ namespace ApiTests
 
             Assert.IsInstanceOfType(actual, typeof(UnprocessableEntityResult));
         }
+
+        [TestMethod]
+        public void CreateUser_GivenOnlyUserName_ShouldReturnUEEr()
+        {
+            var actual = _usersController.Post(new User
+            {
+                Name = "John"
+            });
+
+            Assert.IsInstanceOfType(actual, typeof(UnprocessableEntityResult));
+        }
     }
 }
