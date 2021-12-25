@@ -32,5 +32,13 @@ namespace ApiTests
 
             Assert.IsInstanceOfType(actual, typeof(IEnumerable<Twit>));
         }
+
+        [TestMethod]
+        public void PostTwit_ShouldReturnCreatedTwit()
+        {
+            var actual = _twitsController.Post("Bonjour");
+
+            Assert.IsInstanceOfType(actual, typeof(Twit));
+        }
     }
 }

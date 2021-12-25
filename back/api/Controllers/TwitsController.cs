@@ -11,10 +11,18 @@ namespace TwitterApi.Controllers
     [ApiController]
     public class TwitsController : ControllerBase
     {
+        IEnumerable<Twit> twits = new Twit[] { };
+
         [HttpGet]
         public IEnumerable<Twit> Get()
         {
             return new Twit[] {};
+        }
+
+        [HttpPost("{body:string}")]
+        public Twit Post(string body)
+        {
+            return new Twit {};
         }
     }
 }
