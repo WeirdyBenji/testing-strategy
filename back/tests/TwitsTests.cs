@@ -9,12 +9,18 @@ namespace ApiTests
     [TestClass]
     public class TwitsTests
     {
+        private TwitsController _twitsController;
+
+        [TestInitialize]
+        public void Initialize()
+        {
+            _twitsController = new();
+        }
+
         [TestMethod]
         public void GetTwits_ShouldReturnArray()
         {
-            TwitsController twitsController = new TwitsController();
-
-            var actual = twitsController.Get();
+            var actual = _twitsController.Get();
 
             Assert.IsInstanceOfType(actual, typeof(Array));
         }
@@ -22,12 +28,9 @@ namespace ApiTests
         [TestMethod]
         public void GetTwits_ShouldReturnArrayOfTwits()
         {
-            TwitsController twitsController = new TwitsController();
-
-            var actual = twitsController.Get();
+            var actual = _twitsController.Get();
 
             Assert.IsInstanceOfType(actual, typeof(IEnumerable<Twit>));
-
         }
     }
 }
