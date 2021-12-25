@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Any;
 using System.Collections;
 using System.Collections.Generic;
+using TwitterApi.Models;
 
 namespace TwitterApi.Controllers
 {
@@ -11,9 +12,9 @@ namespace TwitterApi.Controllers
     public class TwitsController : ControllerBase
     {
         [HttpGet]
-        public IEnumerable<AnyType> Get()
+        public IEnumerable<Twit> Get()
         {
-            return new AnyType[] {};
+            return new Twit[] {};
         }
     }
 }
