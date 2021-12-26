@@ -30,5 +30,18 @@ namespace TwitterApi.Controllers
         {
             return new Twit {};
         }
+
+        [HttpPut]
+        public StatusCodeResult Put(int id)
+        {
+            if (id >= 0)
+            {
+            // Add the id of the user to the like array
+                return Ok();
+            }
+
+            return NotFound();
+
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using TwitterApi.Controllers;
@@ -47,6 +48,14 @@ namespace ApiTests
             var actual = _twitsController.Get(0);
 
             Assert.IsInstanceOfType(actual, typeof(Twit));
+        }
+
+        [TestMethod]
+        public void PutLike_GivenTwitId_ShouldReturn404()
+        {
+            var actual = _twitsController.Put(-1);
+
+            Assert.AreEqual(404, actual.StatusCode);
         }
     }
 }
