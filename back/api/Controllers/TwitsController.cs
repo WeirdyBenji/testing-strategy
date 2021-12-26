@@ -19,7 +19,7 @@ namespace TwitterApi.Controllers
             return new Twit[] { };
         }
 
-        [HttpGet("id:int")]
+        [HttpGet("{id:int}")]
         public Twit Get(int id)
         {
             return new Twit { };
@@ -31,8 +31,8 @@ namespace TwitterApi.Controllers
             return new Twit {};
         }
 
-        [HttpPut]
-        public StatusCodeResult Put(int id)
+        [HttpPut("{id:int}/like")]
+        public StatusCodeResult PutLike(int id)
         {
             if (id >= 0)
             {
@@ -42,6 +42,18 @@ namespace TwitterApi.Controllers
 
             return NotFound();
 
+        }
+
+        [HttpPut("{id:int}/rt")]
+        public StatusCodeResult PostRt(int id)
+        {
+            if (id >= 0)
+            {
+                // Add the ref of the main twit to the rt
+                return Ok();
+            }
+
+            return NotFound();
         }
     }
 }
