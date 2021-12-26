@@ -44,8 +44,21 @@ namespace TwitterApi.Controllers
 
         }
 
-        [HttpPut("{id:int}/rt")]
+        [HttpPost("{id:int}/rt")]
         public StatusCodeResult PostRt(int id)
+        {
+            if (id >= 0)
+            {
+                // Add the ref of the main twit to the rt
+                return Ok();
+            }
+
+            return NotFound();
+
+        }
+
+        [HttpPost("{id:int}/reply")]
+        public StatusCodeResult PostReply(int id)
         {
             if (id >= 0)
             {

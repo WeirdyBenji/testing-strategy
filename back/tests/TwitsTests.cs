@@ -73,5 +73,21 @@ namespace ApiTests
 
             Assert.AreEqual(404, actual.StatusCode);
         }
+
+        [TestMethod]
+        public void PostRt_GivenTwitId_ShouldReturnOk()
+        {
+            var actual = _twitsController.PostRt(0);
+
+            Assert.AreEqual(200, actual.StatusCode);
+        }
+
+        [TestMethod]
+        public void PostReply_GivenTwitId_ShouldReturnOk()
+        {
+            var actual = _twitsController.PostReply(0);
+
+            Assert.AreEqual(200, actual.StatusCode);
+        }
     }
 }
