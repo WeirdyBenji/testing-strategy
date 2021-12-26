@@ -16,7 +16,13 @@ namespace TwitterApi.Controllers
         [HttpGet]
         public IEnumerable<Twit> Get()
         {
-            return new Twit[] {};
+            return new Twit[] { };
+        }
+
+        [HttpGet("id:int")]
+        public Twit Get(int id)
+        {
+            return new Twit { };
         }
 
         [HttpPost("{body:string}")]
