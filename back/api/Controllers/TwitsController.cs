@@ -25,7 +25,7 @@ namespace TwitterApi.Controllers
             return new Twit { };
         }
 
-        [HttpPost("{body:string}")]
+        [HttpPost("{body}")]
         public Twit Post(string body)
         {
             return new Twit {};
