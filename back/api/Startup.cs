@@ -11,6 +11,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using TwitterApi.Data;
 
 namespace TwitterApi
 {
@@ -41,6 +43,9 @@ namespace TwitterApi
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "TwitterApi", Version = "v1" });
             });
+
+            services.AddDbContext<ApiContext>(options =>
+                options.UseSqlite(Configuration.GetConnectionString("ApiContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
