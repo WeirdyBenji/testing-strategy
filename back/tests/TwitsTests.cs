@@ -51,11 +51,19 @@ namespace ApiTests
         }
 
         [TestMethod]
-        public void PutLike_GivenTwitId_ShouldReturn404()
+        public void PutLike_GivenTwitId_ShouldReturnNotFound()
         {
             var actual = _twitsController.Put(-1);
 
             Assert.AreEqual(404, actual.StatusCode);
+        }
+
+        [TestMethod]
+        public void PutLike_GivenTwitId_ShouldReturnOk()
+        {
+            var actual = _twitsController.Put(0);
+
+            Assert.AreEqual(200, actual.StatusCode);
         }
     }
 }
