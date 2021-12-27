@@ -16,13 +16,57 @@ namespace TwitterApi.Controllers
         [HttpGet]
         public IEnumerable<Twit> Get()
         {
-            return new Twit[] {};
+            return new Twit[] { };
+        }
+
+        [HttpGet("{id:int}")]
+        public Twit Get(int id)
+        {
+            return new Twit { };
         }
 
         [HttpPost("{body}")]
         public Twit Post(string body)
         {
             return new Twit {};
+        }
+
+        [HttpPut("{id:int}/like")]
+        public StatusCodeResult PutLike(int id)
+        {
+            if (id >= 0)
+            {
+            // Add the id of the user to the like array
+                return Ok();
+            }
+
+            return NotFound();
+
+        }
+
+        [HttpPost("{id:int}/rt")]
+        public StatusCodeResult PostRt(int id)
+        {
+            if (id >= 0)
+            {
+                // Add the ref of the main twit to the rt
+                return Ok();
+            }
+
+            return NotFound();
+
+        }
+
+        [HttpPost("{id:int}/reply")]
+        public StatusCodeResult PostReply(int id)
+        {
+            if (id >= 0)
+            {
+                // Add the ref of the main twit to the rt
+                return Ok();
+            }
+
+            return NotFound();
         }
     }
 }
