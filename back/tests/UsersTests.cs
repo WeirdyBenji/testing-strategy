@@ -69,6 +69,14 @@ namespace ApiTests
         }
 
         [TestMethod]
+        public async Task GetUser_GivenUserId_ShouldReturnOkObjWithUser()
+        {
+            var actual = await _usersController.Get(1) as OkObjectResult;
+
+            Assert.IsInstanceOfType(actual.Value, typeof(User));
+        }
+
+        [TestMethod]
         public async Task GetUsers_GivenUserId_ShouldReturnErrNotFound()
         {
             var actual = await _usersController.Get(0);
