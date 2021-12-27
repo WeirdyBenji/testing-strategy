@@ -1,6 +1,8 @@
+using System;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using TwitterApi.Data;
 using TwitterApi.Models;
 
@@ -53,6 +55,13 @@ namespace TwitterApi.Controllers
         [HttpPost]
         public IActionResult Create([FromBody] User user)
         {
+            try {
+                _context.Users.Add(user);
+                _context.SaveChanges();
+            } catch (DbUpdateException) {
+                return UnprocessableEntity();
+            }
+
             return Ok(user);
         }
     }

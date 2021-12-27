@@ -86,7 +86,7 @@ namespace ApiTests
 
         [TestMethod]
         public void CreateUser_GivenFullUser_ShouldReturnUser()
-        {
+        { 
             var actual = _usersController.Create(new User
             {
                 Name = "John",
@@ -95,6 +95,17 @@ namespace ApiTests
             }) as OkObjectResult;
 
             Assert.IsInstanceOfType(actual.Value, typeof(User));
+        }
+
+        [TestMethod]
+        public void CreateUser_GivenUserName_ShouldReturnUE()
+        {
+            var actual = _usersController.Create(new User
+            {
+                Name = "John"
+            });
+
+            Assert.IsInstanceOfType(actual, typeof(UnprocessableEntityResult));
         }
     }
 }
