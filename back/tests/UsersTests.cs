@@ -1,23 +1,49 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TwitterApi.Controllers;
+using TwitterApi.Data;
 using TwitterApi.Models;
 
 namespace ApiTests
 {
+
     [TestClass]
     public class UsersTests
     {
         private UsersController _usersController;
-
+        private ApiContext _ctx;
+        
         [TestInitialize]
         public void Initialize()
         {
-            _usersController = new();
+            var conOpt = new DbContextOptionsBuilder<ApiContext>()
+                .UseSqlite("Data Source=My.db").Options;
+
+            _ctx = new ApiContext(conOpt);
+            _ctx.Database.OpenConnection();
+            _ctx.Database.Migrate();
+
+            _ctx.Users.Add(new User()
+            {
+                Name = "John",
+                Password = "123",
+                Email = "john@doe.com"
+            });
+            _ctx.SaveChanges();
+
+            _usersController = new(_ctx);
         }
-     
+
+        [TestCleanup]
+        public void Teardown()
+        {
+            _ctx.Database.CloseConnection();
+        }
+
         [TestMethod]
         public void GetUsers_ShouldReturnArray()
         {
@@ -35,11 +61,19 @@ namespace ApiTests
         }
 
         [TestMethod]
-        public void GetUsers_GivenUserId_ShouldReturnUser()
+        public async Task GetUsers_GivenUserId_ShouldReturnOkObjectResult()
         {
-            var actual = _usersController.Get(0);
+            var actual = await _usersController.Get(1);
 
-            Assert.IsInstanceOfType(actual, typeof(User));
+            Assert.IsInstanceOfType(actual, typeof(OkObjectResult));
+        }
+
+        [TestMethod]
+        public async Task GetUsers_GivenUserId_ShouldReturnErrNotFound()
+        {
+            var actual = await _usersController.Get(0);
+
+            Assert.IsInstanceOfType(actual, typeof(NotFoundResult));
         }
 
         [TestMethod]

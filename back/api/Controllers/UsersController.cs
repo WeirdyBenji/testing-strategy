@@ -1,7 +1,7 @@
-using System;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using Microsoft.OpenApi.Any;
+using System.Threading.Tasks;
+using TwitterApi.Data;
 using TwitterApi.Models;
 
 
@@ -13,11 +13,18 @@ namespace TwitterApi.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
+        private readonly ApiContext _context;
+
+        public UsersController(ApiContext context)
+        {
+            _context = context;
+        }
+
         // GET: api/Users
         [HttpGet]
         public IEnumerable<User> Get()
         {
-            return new User[]
+            return new[]
             {
                 new User {
                     Name = "John"
@@ -30,9 +37,16 @@ namespace TwitterApi.Controllers
 
         // GET api/Users/5
         [HttpGet("{id:int}")]
-        public User Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            return new User {};
+            var user = await _context.User.FindAsync(id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(user);
         }
 
         // POST api/Users
