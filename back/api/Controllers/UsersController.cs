@@ -22,7 +22,7 @@ namespace TwitterApi.Controllers
 
         // GET: api/Users
         [HttpGet]
-        public IEnumerable<User> Get()
+        public IEnumerable<User> Index()
         {
             return new[]
             {
@@ -37,7 +37,7 @@ namespace TwitterApi.Controllers
 
         // GET api/Users/5
         [HttpGet("{id:int}")]
-        public async Task<IActionResult> Get(int id)
+        public async Task<IActionResult> Show(int id)
         {
             var user = await _context.Users.FindAsync(id);
 
@@ -51,7 +51,7 @@ namespace TwitterApi.Controllers
 
         // POST api/Users
         [HttpPost]
-        public User Post([FromBody] User user)
+        public User Create([FromBody] User user)
         {
             return user;
         }

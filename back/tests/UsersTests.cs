@@ -47,7 +47,7 @@ namespace ApiTests
         [TestMethod]
         public void GetUsers_ShouldReturnArray()
         {
-            var actual = _usersController.Get();
+            var actual = _usersController.Index();
             
             Assert.IsInstanceOfType(actual, typeof(Array));
         }
@@ -55,15 +55,15 @@ namespace ApiTests
         [TestMethod]
         public void GetUsers_ShouldReturnArrayOfUsers()
         {
-            var actual = _usersController.Get();
+            var actual = _usersController.Index();
 
             Assert.IsInstanceOfType(actual, typeof(IEnumerable<User>));
         }
 
         [TestMethod]
-        public async Task GetUsers_GivenUserId_ShouldReturnOkObjectResult()
+        public async Task GetUser_GivenUserId_ShouldReturnOkObjectResult()
         {
-            var actual = await _usersController.Get(1);
+            var actual = await _usersController.Show(1);
 
             Assert.IsInstanceOfType(actual, typeof(OkObjectResult));
         }
@@ -71,15 +71,15 @@ namespace ApiTests
         [TestMethod]
         public async Task GetUser_GivenUserId_ShouldReturnOkObjWithUser()
         {
-            var actual = await _usersController.Get(1) as OkObjectResult;
+            var actual = await _usersController.Show(1) as OkObjectResult;
 
             Assert.IsInstanceOfType(actual.Value, typeof(User));
         }
 
         [TestMethod]
-        public async Task GetUsers_GivenUserId_ShouldReturnErrNotFound()
+        public async Task GetUser_GivenUserId_ShouldReturnErrNotFound()
         {
-            var actual = await _usersController.Get(0);
+            var actual = await _usersController.Show(0);
 
             Assert.IsInstanceOfType(actual, typeof(NotFoundResult));
         }
@@ -87,7 +87,7 @@ namespace ApiTests
         [TestMethod]
         public void CreateUser_GivenFullUser_ShouldReturnUser()
         {
-            var actual = _usersController.Post(new User
+            var actual = _usersController.Create(new User
             {
                 Name = "John",
                 Password = "123"
