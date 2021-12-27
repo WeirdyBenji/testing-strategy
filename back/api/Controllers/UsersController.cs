@@ -51,9 +51,9 @@ namespace TwitterApi.Controllers
 
         // POST api/Users
         [HttpPost]
-        public User Create([FromBody] User user)
+        public IActionResult Create([FromBody] User user)
         {
-            return user;
+            return Ok(user);
         }
     }
 }

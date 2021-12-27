@@ -90,10 +90,11 @@ namespace ApiTests
             var actual = _usersController.Create(new User
             {
                 Name = "John",
-                Password = "123"
-            });
+                Password = "123",
+                Email = "john@doe.com"
+            }) as OkObjectResult;
 
-            Assert.IsInstanceOfType(actual, typeof(User));
+            Assert.IsInstanceOfType(actual.Value, typeof(User));
         }
     }
 }
