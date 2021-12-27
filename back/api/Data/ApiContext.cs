@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using TwitterApi.Models;
 
 namespace TwitterApi.Data
@@ -14,6 +10,11 @@ namespace TwitterApi.Data
         {
         }
 
-        public DbSet<TwitterApi.Models.User> User { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>().ToTable("User");
+        }
+
+        public DbSet<User> Users { get; set; }
     }
 }
