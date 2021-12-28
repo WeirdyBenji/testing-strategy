@@ -62,7 +62,7 @@ namespace TwitterApi.Controllers
                 return UnprocessableEntity();
             }
 
-            return Ok(user);
+            return CreatedAtAction("Show", new { id = user.Id }, user);
         }
     }
 }

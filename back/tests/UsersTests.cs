@@ -92,7 +92,7 @@ namespace ApiTests
                 Name = "John",
                 Password = "123",
                 Email = "john@doe.com"
-            }) as OkObjectResult;
+            }) as CreatedAtActionResult;
 
             Assert.IsInstanceOfType(actual.Value, typeof(User));
         }
@@ -106,6 +106,19 @@ namespace ApiTests
             });
 
             Assert.IsInstanceOfType(actual, typeof(UnprocessableEntityResult));
+        }
+
+        [TestMethod]
+        public void CreateUser_GivenFullUser_ShouldReturnCreatedAt()
+        {
+            var actual = _usersController.Create(new User
+            {
+                Name = "John",
+                Password = "123",
+                Email = "john@doe.com"
+            });
+
+            Assert.IsInstanceOfType(actual, typeof(CreatedAtActionResult));
         }
     }
 }
