@@ -98,7 +98,7 @@ namespace ApiTests
         }
 
         [TestMethod]
-        public async Task CreateUser_GivenUserName_ShouldReturnUE()
+        public async Task CreateUser_GivenUserName_ShouldReturnUnprocessableEntity()
         {
             var actual = await _usersController.Create(new User
             {
