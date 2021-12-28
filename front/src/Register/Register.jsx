@@ -28,7 +28,7 @@ class Register extends Component {
     let data = {...this.state};
 
     data.password = sha256.update(data.password).toString();
-    fetch('/register', {
+    fetch('https://localhost:5001/api/register', {
       method: "POST",
       body: data
     });

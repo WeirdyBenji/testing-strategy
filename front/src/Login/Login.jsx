@@ -19,7 +19,7 @@ class Login extends Component {
     let data = {...this.state};
 
     data.password = sha256.update(data.password).toString();
-    fetch('/login', {
+    fetch('https://localhost:5001/api/login', {
       method: "POST",
       body: data
     });
