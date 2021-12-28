@@ -21,7 +21,7 @@ namespace ApiTests
         public void Initialize()
         {
             var conOpt = new DbContextOptionsBuilder<ApiContext>()
-                .UseSqlite("Data Source=My.db").Options;
+                .UseSqlite("Data Source=:memory:").Options;
 
             _ctx = new ApiContext(conOpt);
             _ctx.Database.OpenConnection();
