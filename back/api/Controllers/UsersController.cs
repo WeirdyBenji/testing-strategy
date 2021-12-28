@@ -24,18 +24,7 @@ namespace TwitterApi.Controllers
 
         // GET: api/Users
         [HttpGet]
-        public IEnumerable<User> Index()
-        {
-            return new[]
-            {
-                new User {
-                    Name = "John"
-                },
-                new User {
-                    Name = "Elijah"
-                }
-            };
-        }
+        public async Task<ActionResult<IEnumerable<User>>> Index() => await _context.Users.ToListAsync();
 
         // GET api/Users/:id
         [HttpGet("{id:int}")]

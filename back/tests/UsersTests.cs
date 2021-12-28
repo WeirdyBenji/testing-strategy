@@ -45,11 +45,11 @@ namespace ApiTests
         }
 
         [TestMethod]
-        public void GetUsers_ShouldReturnArray()
+        public async Task GetUsers_ShouldHaveOneElem()
         {
-            var actual = _usersController.Index();
-            
-            Assert.IsInstanceOfType(actual, typeof(Array));
+            var actual = await _usersController.Index();
+
+            Assert.IsTrue(actual.Value.Count() == 1);
         }
 
         [TestMethod]
