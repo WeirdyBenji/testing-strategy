@@ -27,7 +27,7 @@ namespace TwitterApi
                 options.AddDefaultPolicy(
                     builder =>
                     {
-                        builder.WithOrigins("localhost");
+                        builder.WithOrigins("*");
                     });
             });
 
