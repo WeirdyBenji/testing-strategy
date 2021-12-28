@@ -1,5 +1,5 @@
-using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -53,11 +53,11 @@ namespace ApiTests
         }
 
         [TestMethod]
-        public void GetUsers_ShouldReturnArrayOfUsers()
+        public async Task GetUsers_ShouldReturnArrayOfUsers()
         {
-            var actual = _usersController.Index();
+            var actual = await _usersController.Index();
 
-            Assert.IsInstanceOfType(actual, typeof(IEnumerable<User>));
+            Assert.IsInstanceOfType(actual.Value, typeof(IEnumerable<User>));
         }
 
         [TestMethod]
