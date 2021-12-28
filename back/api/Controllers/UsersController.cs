@@ -44,14 +44,23 @@ namespace TwitterApi.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] User user)
         {
-            try {
+            try
+            {
                 _context.Users.Add(user);
                 await _context.SaveChangesAsync();
-            } catch (DbUpdateException) {
+            }
+            catch (DbUpdateException)
+            {
                 return UnprocessableEntity();
             }
 
-            return CreatedAtAction("Show", new { id = user.Id }, user);
+            return CreatedAtAction("Show", new {id = user.Id}, user);
+        }
+
+        [HttpPut]
+        public IActionResult Edit()
+        {
+            return BadRequest();
         }
     }
 }

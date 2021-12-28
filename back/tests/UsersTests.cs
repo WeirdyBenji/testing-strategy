@@ -120,5 +120,13 @@ namespace ApiTests
 
             Assert.IsInstanceOfType(actual, typeof(CreatedAtActionResult));
         }
+
+        [TestMethod]
+        public void EditUser_ShouldReturnBadReq()
+        {
+            var actual = _usersController.Edit();
+
+            Assert.IsInstanceOfType(actual, typeof(BadRequestResult));
+        }
     }
 }
