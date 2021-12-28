@@ -21,14 +21,14 @@ class Register extends Component {
   }
 
   register() {
-    if (this.state.password !== this.state.confirm) {
+   /* if (this.state.password !== this.state.confirm) {
       alert("Confirm and password are different");
       return;
-    }
+    }*/
     let data = {...this.state};
 
     data.password = sha256.update(data.password).toString();
-    fetch('https://localhost:5001/api/register', {
+    fetch('https://localhost:5001/api/users', {
       method: "POST",
       body: data
     });
@@ -58,7 +58,6 @@ class Register extends Component {
           <p>Email: <input type="email" value={this.state.email} onChange={this.handleEmail} /></p>
           <p>Username: <input type="text" value={this.state.name} onChange={this.handleUser} /></p>
           <p>Password: <input type="password" value={this.state.password} onChange={this.handlePasswd} /></p>
-          <p>Confirm: <input type="password" value={this.state.confirm} onChange={this.handleConfirm} /></p>
           <button type="submit" value="Submit" >Register</button>
         </form>
       </div>
