@@ -18,25 +18,26 @@ class Feed extends Component {
   }
 
   getTweets() {
-    // this.setState({tweets: [
-    //   {author: "Jacques", content: "Coucou"},
-    //   {author: "Kenobi", content: "Hello there"},
-    //   {author: "Grivous", content: "GENERAL KENOBI"},
-    //   {author: "Charles de Gaulle", content: "Je vous ai comrpis."}
+    //this.setState({tweets: [
+    //   {author: "Jacques", body: "Coucou"},
+    //   {author: null, body: "Hello there"},
+    //   {author: "Grivous", body: "GENERAL KENOBI"},
+    //   {author: "Charles de Gaulle", body: "Je vous ai comrpis."}
     // ]});
-    fetch("/twits")
-    .then((response) => {
-      this.setState(this.state.tweets, response);
+    fetch("https://localhost:5001/api/twitz")
+    .then(response => response.json())
+    .then(data => {
+      this.setState({tweets: data});
     });
   }
 
   render() {
     return (
       <div className="feed-page">
-        <h1>Galiler</h1>
+        <h1>Galilée</h1>
         {
           this.state.tweets.map(function(obj, i) {
-            return <Tweet key={i} name={obj.author} content={obj.content}/>
+            return <Tweet key={i} name={obj.author || 'Anonymous'} content={obj.body}/>
           })
         }
       </div>
