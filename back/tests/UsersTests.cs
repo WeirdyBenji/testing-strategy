@@ -85,9 +85,9 @@ namespace ApiTests
         }
 
         [TestMethod]
-        public void CreateUser_GivenFullUser_ShouldReturnUser()
+        public async Task CreateUser_GivenFullUser_ShouldReturnUser()
         { 
-            var actual = _usersController.Create(new User
+            var actual = await _usersController.Create(new User
             {
                 Name = "John",
                 Password = "123",
@@ -98,9 +98,9 @@ namespace ApiTests
         }
 
         [TestMethod]
-        public void CreateUser_GivenUserName_ShouldReturnUE()
+        public async Task CreateUser_GivenUserName_ShouldReturnUE()
         {
-            var actual = _usersController.Create(new User
+            var actual = await _usersController.Create(new User
             {
                 Name = "John"
             });
@@ -109,9 +109,9 @@ namespace ApiTests
         }
 
         [TestMethod]
-        public void CreateUser_GivenFullUser_ShouldReturnCreatedAt()
+        public async Task CreateUser_GivenFullUser_ShouldReturnCreatedAt()
         {
-            var actual = _usersController.Create(new User
+            var actual = await _usersController.Create(new User
             {
                 Name = "John",
                 Password = "123",

@@ -37,7 +37,7 @@ namespace TwitterApi.Controllers
             };
         }
 
-        // GET api/Users/5
+        // GET api/Users/:id
         [HttpGet("{id:int}")]
         public async Task<IActionResult> Show(int id)
         {
@@ -53,11 +53,11 @@ namespace TwitterApi.Controllers
 
         // POST api/Users
         [HttpPost]
-        public IActionResult Create([FromBody] User user)
+        public async Task<IActionResult> Create([FromBody] User user)
         {
             try {
                 _context.Users.Add(user);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
             } catch (DbUpdateException) {
                 return UnprocessableEntity();
             }
