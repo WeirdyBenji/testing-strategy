@@ -13,8 +13,10 @@ namespace TwitterApi.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().ToTable("User");
+            modelBuilder.Entity<Twit>().ToTable("Twit");
         }
 
         public DbSet<User> Users { get; set; }
+        public DbSet<Twit> Twits { get; set; }
     }
 }
